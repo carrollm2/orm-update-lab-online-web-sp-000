@@ -8,11 +8,11 @@ class Student
   attr_reader :id
 
 
-  # def initialize(id=nil, name, grade)
-  #   @id = id
-  #   @name = name
-  #   @grade = grade
-  # end
+  def initialize(id=nil, name, grade)
+    @id = id
+    @name = name
+    @grade = grade
+  end
 
 
   def self.new_from_db(row)
