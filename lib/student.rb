@@ -8,11 +8,21 @@ class Student
   attr_reader :id
 
 
-  def initialize(id=nil, name, grade)
-    @id = id
-    @name = name
-    @grade = grade
+  # def initialize(id=nil, name, grade)
+  #   @id = id
+  #   @name = name
+  #   @grade = grade
+  # end
+
+
+  def self.new_from_db(row)
+    new_student = self.new
+    new_student.id = row[0]
+    new_student.name =  row[1]
+    new_student.grade = row[2]
+    new_student  # return the newly created instance
   end
+
 
 
   def self.create_table
@@ -67,15 +77,6 @@ class Student
     sql = "SELECT * FROM students WHERE name = ?"
     result = DB[:conn].execute(sql, name)[0]
     Student.new(result[0], result[1], result[2])
-  end
-
-
-  def self.new_from_db(row)
-    new_student = self.new
-    new_student.id = row[0]
-    new_student.name =  row[1]
-    new_student.grade = row[2]
-    new_student  # return the newly created instance
   end
 
 end
